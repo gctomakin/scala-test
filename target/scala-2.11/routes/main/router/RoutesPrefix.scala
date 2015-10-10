@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/Development/Sublime Projects/scala-test/conf/routes
-// @DATE:Sat Oct 10 14:49:03 PHT 2015
+// @DATE:Sat Oct 10 15:41:01 PHT 2015
 
 
 package router {

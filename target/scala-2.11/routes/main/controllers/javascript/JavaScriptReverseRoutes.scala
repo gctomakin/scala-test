@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/Development/Sublime Projects/scala-test/conf/routes
-// @DATE:Sat Oct 10 14:49:03 PHT 2015
+// @DATE:Sat Oct 10 15:41:01 PHT 2015
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -28,6 +28,16 @@ package controllers.javascript {
       """
         function(file) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[Asset]].javascriptUnbind + """)("file", file)})
+        }
+      """
+    )
+  
+    // @LINE:11
+    def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Assets.versioned",
+      """
+        function(file) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "bower/" + (""" + implicitly[PathBindable[Bower]].javascriptUnbind + """)("file", file)})
         }
       """
     )

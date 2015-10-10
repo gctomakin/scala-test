@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/Development/Sublime Projects/scala-test/conf/routes
-// @DATE:Sat Oct 10 14:49:03 PHT 2015
+// @DATE:Sat Oct 10 15:41:01 PHT 2015
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -23,6 +23,12 @@ package controllers {
     def versioned(file:Asset): Call = {
       implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[Asset]].unbind("file", file))
+    }
+  
+    // @LINE:11
+    def versioned(file:Bower): Call = {
+      implicit val _rrc = new ReverseRouteContext(Map(("path", "/bower_components")))
+      Call("GET", _prefix + { _defaultPrefix } + "bower/" + implicitly[PathBindable[Bower]].unbind("file", file))
     }
   
   }

@@ -42,7 +42,7 @@ Seq[Any](format.raw/*1.1*/("""home"""))
 object home extends home_Scope0.home
               /*
                   -- GENERATED --
-                  DATE: Sat Oct 10 15:17:28 PHT 2015
+                  DATE: Sat Oct 10 15:41:01 PHT 2015
                   SOURCE: /Volumes/Development/Sublime Projects/scala-test/app/views/partials/home.scala.html
                   HASH: 61cedc25db96ee378d1502d63d8047f3cdf49df6
                   MATRIX: 616->0

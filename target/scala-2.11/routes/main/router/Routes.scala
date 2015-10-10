@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/Development/Sublime Projects/scala-test/conf/routes
-// @DATE:Sat Oct 10 14:49:03 PHT 2015
+// @DATE:Sat Oct 10 15:41:01 PHT 2015
 
 package router
 
@@ -44,6 +44,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.Application.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """bower/$file<.+>""", """controllers.Assets.versioned(path:String = "/bower_components", file:Bower)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -85,6 +86,23 @@ class Routes(
     )
   )
 
+  // @LINE:11
+  private[this] lazy val controllers_Assets_versioned2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("bower/"), DynamicPart("file", """.+""",false)))
+  )
+  private[this] lazy val controllers_Assets_versioned2_invoker = createInvoker(
+    Assets_0.versioned(fakeValue[String], fakeValue[Bower]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Assets",
+      "versioned",
+      Seq(classOf[String], classOf[Bower]),
+      "GET",
+      """ bower files""",
+      this.prefix + """bower/$file<.+>"""
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -98,6 +116,12 @@ class Routes(
     case controllers_Assets_versioned1_route(params) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
         controllers_Assets_versioned1_invoker.call(Assets_0.versioned(path, file))
+      }
+  
+    // @LINE:11
+    case controllers_Assets_versioned2_route(params) =>
+      call(Param[String]("path", Right("/bower_components")), params.fromPath[Bower]("file", None)) { (path, file) =>
+        controllers_Assets_versioned2_invoker.call(Assets_0.versioned(path, file))
       }
   }
 }
